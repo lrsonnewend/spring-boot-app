@@ -5,7 +5,7 @@ use spring;
 create table usuario (
 	id_usuario bigint unsigned not null auto_increment,
 	nome varchar(20) not null,
-	senha varhar(50) not null,
+	senha varchar(50) not null,
 	primary key (id_usuario),
 	unique key uni_nome (nome)	
 	
