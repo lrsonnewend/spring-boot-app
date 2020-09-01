@@ -1,3 +1,5 @@
+create database spring;
+
 use spring;
 
 create table usuario (
