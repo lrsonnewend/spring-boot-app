@@ -4,4 +4,4 @@ ports:
 tasks:
   - init: mysql < DDL.sql
 
-imagem: gitpod/workspace-mysql 
+image: gitpod/workspace-mysql 
