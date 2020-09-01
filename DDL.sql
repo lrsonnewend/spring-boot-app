@@ -2,6 +2,9 @@ create database spring;
 
 use spring;
 
+create user 'comum'@'localhost' identified by 'sonnewend2006';
+grant select, insert, delete, update on spring.* to user@'localhost';
+
 create table usuario (
 	id_usuario bigint unsigned not null auto_increment,
 	nome varchar(20) not null,
