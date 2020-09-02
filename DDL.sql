@@ -2,8 +2,8 @@ create database spring;
 
 use spring;
 
-GRANT ALL PRIVILEGES ON spring.* TO 'root'@'localhost' IDENTIFIED BY 'sonnewend2006';
-
+/* GRANT ALL PRIVILEGES ON spring.* TO 'root'@'localhost' IDENTIFIED BY 'sonnewend2006';
+ */
 create table usuario (
 	id_usuario bigint unsigned not null auto_increment,
 	nome varchar(20) not null,
