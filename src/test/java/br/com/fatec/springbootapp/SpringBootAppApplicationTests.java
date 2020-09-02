@@ -13,6 +13,7 @@ class SpringBootAppApplicationTests {
 
     @Autowired
     private UsuarioRepository urep;
+    
 	@Test
 	void contextLoads() {
     }

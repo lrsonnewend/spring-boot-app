@@ -15,9 +15,11 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Long id;
-
+    
+    @Column(name = "nome")
     private String nome;
     
+    @Column(name = "senha")
     private String senha;
 
     public Long getId() {
