@@ -2,6 +2,6 @@ ports:
   - port: 8080
 
 tasks:
-  - init: mysql < DDL.sql
+  - init: mysql --single-transaction < DDL.sql
 
 image: gitpod/workspace-mysql 
