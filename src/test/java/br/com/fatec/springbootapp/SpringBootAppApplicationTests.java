@@ -4,11 +4,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fatec.springbootapp.entity.Usuario;
 import br.com.fatec.springbootapp.repository.UsuarioRepository;
 
 @SpringBootTest
+@Transactional
+@Rollback
 class SpringBootAppApplicationTests {
 
     @Autowired
@@ -22,9 +26,9 @@ class SpringBootAppApplicationTests {
     void testInsert(){
         Usuario user = new Usuario();
         
-        user.setNome("babaca");
+        user.setNome("ronaldo");
         
-        user.setSenha("42er3@Def");
+        user.setSenha("c0r1nter3@Def");
         
         urep.save(user);
 
