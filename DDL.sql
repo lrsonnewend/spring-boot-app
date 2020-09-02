@@ -2,16 +2,14 @@ create database spring;
 
 use spring;
 
-create user 'comum'@'localhost' identified by 'sonnewend2006';
-grant select, insert, delete, update on spring.* to user@'localhost';
+GRANT ALL PRIVILEGES ON spring.* TO 'root'@'localhost' IDENTIFIED BY 'sonnewend2006' WITH GRANT OPTION;
 
 create table usuario (
 	id_usuario bigint unsigned not null auto_increment,
 	nome varchar(20) not null,
 	senha varchar(50) not null,
 	primary key (id_usuario),
-	unique key uni_nome (nome)	
-	
+	unique key uni_nome (nome)
 );
 
 create table autorizacao(
