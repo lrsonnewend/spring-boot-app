@@ -31,11 +31,11 @@ class SpringBootAppApplicationTests {
 	void contextLoads() {
     }
     
-    /* @Test
+    @Test
     void testInsert(){
         Usuario user = new Usuario();
         user.setNome("cacobarcelo");
-        user.setSenha("c0r1nter3@Def");
+        user.setSenha("c0r1nter3Def");
         urep.save(user);
         Autorizacao aut = new Autorizacao();
         aut.setNome("ROLE_USUARIO2");
@@ -43,9 +43,9 @@ class SpringBootAppApplicationTests {
         aut.getUsuarios().add(user);
         arep.save(aut);
         assertNotNull(aut.getUsuarios().iterator().next().getId());
-    } */
+    } 
 
-    /* @Test
+    @Test
     void testAutorizacao(){
         Usuario user = urep.findById(11L).get();
         assertEquals("ROLE_ADMIN", user.getAutorizacoes().iterator().next().getNome());
@@ -55,7 +55,7 @@ class SpringBootAppApplicationTests {
     void testUser(){
         Autorizacao aut = arep.findById(1L).get();
         assertEquals("ronaldo", aut.getUsuarios().iterator().next().getNome());
-    } */
+    } 
 
     @Test
     void testSearchUserByNameContains(){
@@ -78,6 +78,24 @@ class SpringBootAppApplicationTests {
     @Test
     void testSearchUserByNameAuth(){
         List<Usuario> usuarios = urep.findByAutorizacoesNome("ROLE_USUARIO");
+        assertFalse(usuarios.isEmpty());
+    }
+
+    @Test
+    void testaBuscaUsuarioNomeQuery(){
+        Usuario usuario = urep.buscaUsuarioPorNome("barcelo");
+        assertNotNull(usuario);
+    }
+
+    @Test
+    void testaBuscaUsuarioNomeESenhaQuery(){
+        Usuario usuario = urep.buscaUsuarioPorNomeESenha("cacobarcelo", "c0r1nter3Def");
+        assertNotNull(usuario);
+    }
+
+    @Test
+    void testaBuscaUsuarioNomeAutorizacaoQuery(){
+        List<Usuario> usuarios = urep.buscaPorNomeAutorizacao("ROLE_USUARIO2");
         assertFalse(usuarios.isEmpty());
     }
 }
