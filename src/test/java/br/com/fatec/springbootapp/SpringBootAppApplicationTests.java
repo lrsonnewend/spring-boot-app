@@ -15,6 +15,7 @@ import br.com.fatec.springbootapp.entity.Autorizacao;
 import br.com.fatec.springbootapp.entity.Usuario;
 import br.com.fatec.springbootapp.repository.AutorizacaoRepository;
 import br.com.fatec.springbootapp.repository.UsuarioRepository;
+import br.com.fatec.springbootapp.service.SegurancaService;
 
 @SpringBootTest
 @Transactional
@@ -26,12 +27,15 @@ class SpringBootAppApplicationTests {
 
     @Autowired
     private AutorizacaoRepository arep;
+
+    @Autowired
+    private SegurancaService segService;
     
 	@Test
 	void contextLoads() {
     }
     
-    @Test
+    /* @Test
     void testInsert(){
         Usuario user = new Usuario();
         user.setNome("cacobarcelo");
@@ -43,13 +47,13 @@ class SpringBootAppApplicationTests {
         aut.getUsuarios().add(user);
         arep.save(aut);
         assertNotNull(aut.getUsuarios().iterator().next().getId());
-    } 
+    }  */
 
-    @Test
+    /* @Test
     void testAutorizacao(){
         Usuario user = urep.findById(11L).get();
         assertEquals("ROLE_ADMIN", user.getAutorizacoes().iterator().next().getNome());
-    }
+    } 
 
     @Test
     void testUser(){
@@ -79,11 +83,11 @@ class SpringBootAppApplicationTests {
     void testSearchUserByNameAuth(){
         List<Usuario> usuarios = urep.findByAutorizacoesNome("ROLE_USUARIO");
         assertFalse(usuarios.isEmpty());
-    }
+    } */
 
-    @Test
+/*      @Test
     void testaBuscaUsuarioNomeQuery(){
-        Usuario usuario = urep.buscaUsuarioPorNome("barcelo");
+        Usuario usuario = urep.buscaUsuarioPorNome("cacobarcelo");
         assertNotNull(usuario);
     }
 
@@ -97,5 +101,11 @@ class SpringBootAppApplicationTests {
     void testaBuscaUsuarioNomeAutorizacaoQuery(){
         List<Usuario> usuarios = urep.buscaPorNomeAutorizacao("ROLE_USUARIO2");
         assertFalse(usuarios.isEmpty());
+    } */
+
+    @Test
+    void testaServicoCriaUsuario(){
+        Usuario usuario = segService.criarUsuario("ademir", "ademir123", "ROLE_ADEMIRO");
+        assertNotNull(usuario);
     }
 }
