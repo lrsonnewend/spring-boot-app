@@ -13,25 +13,34 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootapp.controller.View;
+
 @Entity
 @Table(name="usuario")
 public class Usuario {
-        
+    
+    @JsonView(View.UsuarioCompleto.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Long id;
     
+
+    @JsonView({View.UsuarioResumo.class, View.AutorizacaoResumo.class})
     @Column(name = "nome")
     private String nome;
     
     @Column(name = "senha")
     private String senha;
 
+    @JsonView(View.UsuarioResumo.class)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_autorizacao",
     joinColumns = { @JoinColumn(name = "id_usuario") },
     inverseJoinColumns = { @JoinColumn(name = "id_aut") })
+
     private Set<Autorizacao> autorizacoes;
     
     public Long getId() {

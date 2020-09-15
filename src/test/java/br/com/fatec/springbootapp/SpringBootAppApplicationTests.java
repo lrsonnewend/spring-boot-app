@@ -3,15 +3,12 @@ package br.com.fatec.springbootapp;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.HashSet;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.fatec.springbootapp.entity.Autorizacao;
 import br.com.fatec.springbootapp.entity.Usuario;
 import br.com.fatec.springbootapp.repository.AutorizacaoRepository;
 import br.com.fatec.springbootapp.repository.UsuarioRepository;
@@ -22,11 +19,11 @@ import br.com.fatec.springbootapp.service.SegurancaService;
 @Rollback
 class SpringBootAppApplicationTests {
 
-    @Autowired
+/*     @Autowired
     private UsuarioRepository urep;
 
     @Autowired
-    private AutorizacaoRepository arep;
+    private AutorizacaoRepository arep; */
 
     @Autowired
     private SegurancaService segService;
