@@ -10,13 +10,11 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fatec.springbootapp.entity.Usuario;
-import br.com.fatec.springbootapp.repository.AutorizacaoRepository;
-import br.com.fatec.springbootapp.repository.UsuarioRepository;
 import br.com.fatec.springbootapp.service.SegurancaService;
 
 @SpringBootTest
-@Transactional
-@Rollback
+//@Transactional
+//@Rollback
 class SpringBootAppApplicationTests {
 
 /*     @Autowired
