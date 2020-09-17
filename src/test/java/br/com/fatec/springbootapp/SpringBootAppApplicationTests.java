@@ -3,37 +3,62 @@ package br.com.fatec.springbootapp;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
+import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fatec.springbootapp.entity.Usuario;
+import br.com.fatec.springbootapp.repository.AutorizacaoRepository;
+import br.com.fatec.springbootapp.repository.UsuarioRepository;
+import br.com.fatec.springbootapp.entity.Autorizacao;
 import br.com.fatec.springbootapp.service.SegurancaService;
 
 @SpringBootTest
-//@Transactional
-//@Rollback
+@Transactional
+
 class SpringBootAppApplicationTests {
 
-/*     @Autowired
+    @Autowired
     private UsuarioRepository urep;
 
     @Autowired
-    private AutorizacaoRepository arep; */
+    private AutorizacaoRepository arep;
 
     @Autowired
     private SegurancaService segService;
     
+
+    @BeforeAll
+    static void init(@Autowired JdbcTemplate jdbcTemplate){
+        jdbcTemplate.update(
+            "insert into usuario (nome, senha) values(?, ?)",
+            "Cacobarcelo", "cacoglobo123"
+        );
+        
+        jdbcTemplate.update(
+            "insert into autorizacao (nome) values(?)",
+            "ROLE_ADMIN"
+        );
+
+        jdbcTemplate.update(
+            "insert into usuario_atorizacao (id_usuario, id_aut) values(?, ?)",
+            1L, 1L
+        );
+    }
+
 	@Test
 	void contextLoads() {
     }
     
-    /* @Test
+    @Test
     void testInsert(){
         Usuario user = new Usuario();
-        user.setNome("cacobarcelo");
+        user.setNome("fernando");
         user.setSenha("c0r1nter3Def");
         urep.save(user);
         Autorizacao aut = new Autorizacao();
@@ -42,29 +67,29 @@ class SpringBootAppApplicationTests {
         aut.getUsuarios().add(user);
         arep.save(aut);
         assertNotNull(aut.getUsuarios().iterator().next().getId());
-    }  */
+    }
 
-    /* @Test
+    @Test
     void testAutorizacao(){
-        Usuario user = urep.findById(11L).get();
+        Usuario user = urep.findById(1L).get();
         assertEquals("ROLE_ADMIN", user.getAutorizacoes().iterator().next().getNome());
     } 
 
     @Test
     void testUser(){
         Autorizacao aut = arep.findById(1L).get();
-        assertEquals("ronaldo", aut.getUsuarios().iterator().next().getNome());
+        assertEquals("fernando", aut.getUsuarios().iterator().next().getNome());
     } 
 
     @Test
     void testSearchUserByNameContains(){
-        List<Usuario> usuarios = urep.findByNomeContainsIgnoreCase("R");
+        List<Usuario> usuarios = urep.findByNomeContainsIgnoreCase("C");
         assertFalse(usuarios.isEmpty());
     }
 
     @Test
     void testSearchUserByName(){
-        Usuario usuario = urep.findByNome("cacobarcelo");
+        Usuario usuario = urep.findByNome("Cacobarcelo");
         assertNotNull(usuario);
     }
 
@@ -78,17 +103,17 @@ class SpringBootAppApplicationTests {
     void testSearchUserByNameAuth(){
         List<Usuario> usuarios = urep.findByAutorizacoesNome("ROLE_USUARIO");
         assertFalse(usuarios.isEmpty());
-    } */
+    }
 
-/*      @Test
+    @Test
     void testaBuscaUsuarioNomeQuery(){
-        Usuario usuario = urep.buscaUsuarioPorNome("cacobarcelo");
+        Usuario usuario = urep.buscaUsuarioPorNome("Cacobarcelo");
         assertNotNull(usuario);
     }
 
     @Test
     void testaBuscaUsuarioNomeESenhaQuery(){
-        Usuario usuario = urep.buscaUsuarioPorNomeESenha("cacobarcelo", "c0r1nter3Def");
+        Usuario usuario = urep.buscaUsuarioPorNomeESenha("Cacobarcelo", "cacoglobo123");
         assertNotNull(usuario);
     }
 
@@ -96,7 +121,7 @@ class SpringBootAppApplicationTests {
     void testaBuscaUsuarioNomeAutorizacaoQuery(){
         List<Usuario> usuarios = urep.buscaPorNomeAutorizacao("ROLE_USUARIO2");
         assertFalse(usuarios.isEmpty());
-    } */
+    }
 
     @Test
     void testaServicoCriaUsuario(){
