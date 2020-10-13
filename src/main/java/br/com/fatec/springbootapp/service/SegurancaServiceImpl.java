@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import br.com.fatec.springbootapp.entity.Autorizacao;
@@ -26,6 +27,7 @@ public class SegurancaServiceImpl implements SegurancaService {
     
     @Override
     @Transactional
+    
     public Usuario criarUsuario(String nome, String senha, String autorizacao) {
         Autorizacao auto = autRepo.findByNome(autorizacao);
         if(auto == null){
@@ -43,6 +45,7 @@ public class SegurancaServiceImpl implements SegurancaService {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public List<Usuario> buscarTodosUsuarios(){
         return userRepo.findAll();
     }
