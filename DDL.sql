@@ -1,7 +1,3 @@
-drop user 'user'@'localhost';
-
-drop database spring;
-
 create database spring;
 
 use spring;
